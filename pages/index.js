@@ -2,17 +2,26 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
+import useSWR from 'swr'
+
+const fectherFuc = async (url) => {
+  const res = await fetch(url)
+  return res.json()
+}
+
 export default function Home() {
+  const {data, error} = useSWR('http://52.237.73.240:9090/api/greeting/greeting-card/608fc6acf5daf21edf82715e', fectherFuc, {initialData: { data: { card: { title: '', thumbnails: '' } } }})
+  // debugger
   return (
     <div className={styles.container}>
       <Head>
         <title>Astra Greeting Card</title>
         
-        <meta property="og:description" content="Selamat Idul Fitri 1442H" />
+        <meta property="og:description" content={data.data.card.title} />
         <meta property="og:site_name" content="YouTube" />
         <meta property="og:url" content="https://www.youtube.com/watch?v=ih2xubMaZWI" />
         <meta property="og:title" content="OMFG - Hello" />
-        <meta property="og:image" content="https://i.ytimg.com/vi/ih2xubMaZWI/maxresdefault.jpg" />
+        <meta property="og:image" content={data.data.card.thumbnails} />
         <meta property="og:type" content="video.other" />
         <meta property="og:video:url" content="https://www.youtube.com/embed/ih2xubMaZWI" />
         <meta property="og:video:secure_url" content="https://www.youtube.com/embed/ih2xubMaZWI" />
@@ -29,7 +38,7 @@ export default function Home() {
         <meta name="twitter:site" content="@youtube" />
         <meta name="twitter:title" content="OMFG - Hello" />
         <meta name="twitter:description" content="Selamat Idul Fitri 1442H" />
-        <meta name="twitter:image" content="https://i.ytimg.com/vi/ih2xubMaZWI/maxresdefault.jpg" />
+        <meta name="twitter:image" content={data.data.card.thumbnails} />
         <meta name="twitter:player" content="https://www.youtube.com/embed/qvK1DCJvuek" />
         <meta name="twitter:player:width" content="1280" />
         <meta name="twitter:player:height" content="720" />
