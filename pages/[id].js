@@ -4,24 +4,46 @@ import styles from '../styles/Home.module.css'
 
 import useSWR from 'swr'
 
+// export const getStaticPaths = () => {
+//   return {
+//     paths: [
+//       { params: { id: '1' } }
+//     ],
+//     fallback: false
+//   }
+// }
+
+export const getServerSideProps = async (context) => {
+  const id = context.query.id
+  console.log("id", id)
+  const res = await fetch(`http://52.237.73.240:9090/api/greeting/greeting-card/${id}`)
+  const { data } = await res.json()
+  
+  return {
+    props: {
+      data
+    }
+  }
+}
+
 const fectherFuc = async (url) => {
   const res = await fetch(url)
   return res.json()
 }
 
-export default function Home(props) {
-  const {data, error} = useSWR('http://52.237.73.240:9090/api/greeting/greeting-card/608fc6acf5daf21edf82715e', fectherFuc, { initialData: props, revalidateOnMount: true })
+export default function Home({data}) {
+  // const {data, error} = useSWR('http://52.237.73.240:9090/api/greeting/greeting-card/608fc6acf5daf21edf82715e', fectherFuc, { initialData: {data: {card: {title:''}}}, revalidateOnMount: true })
   
   return (
     <div className={styles.container}>
       <Head>
         <title>Astra Greeting Card</title>
         
-        <meta property="og:description" content={data.data.card.title} />
+        <meta property="og:description" content={data.card.title} />
         <meta property="og:site_name" content="YouTube" />
         <meta property="og:url" content="https://www.youtube.com/watch?v=ih2xubMaZWI" />
         <meta property="og:title" content="Astra Greeting Card" />
-        <meta property="og:image" content={data.data.card.thumbnails} />
+        <meta property="og:image" content={data.card.thumbnails} />
         <meta property="og:type" content="video.other" />
         <meta property="og:video:url" content="https://www.youtube.com/embed/ih2xubMaZWI" />
         <meta property="og:video:secure_url" content="https://www.youtube.com/embed/ih2xubMaZWI" />
@@ -37,8 +59,8 @@ export default function Home(props) {
         <meta name="twitter:card" content="player" />
         <meta name="twitter:site" content="@youtube" />
         <meta name="twitter:title" content="Astra Greeting Card" />
-        <meta name="twitter:description" content={data.data.card.title} />
-        <meta name="twitter:image" content={data.data.card.thumbnails} />
+        <meta name="twitter:description" content={data.card.title} />
+        <meta name="twitter:image" content={data.card.thumbnails} />
         <meta name="twitter:player" content="https://www.youtube.com/embed/qvK1DCJvuek" />
         <meta name="twitter:player:width" content="1280" />
         <meta name="twitter:player:height" content="720" />
@@ -101,15 +123,4 @@ export default function Home(props) {
       </footer>
     </div>
   )
-}
-
-export async function getStaticProps(contect){
-  const res = await fetch('http://52.237.73.240:9090/api/greeting/greeting-card/608fc6acf5daf21edf82715e')
-  const { data } = await res.json()
-
-  return {
-    props: {
-      data
-    }
-  }
 }
