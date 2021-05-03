@@ -9,9 +9,9 @@ const fectherFuc = async (url) => {
   return res.json()
 }
 
-export default function Home() {
-  const {data, error} = useSWR('http://52.237.73.240:9090/api/greeting/greeting-card/608fc6acf5daf21edf82715e', fectherFuc, {initialData: { data: { card: { title: '', thumbnails: '' } } }})
-  // debugger
+export default function Home(props) {
+  const {data, error} = useSWR('http://52.237.73.240:9090/api/greeting/greeting-card/608fc6acf5daf21edf82715e', fectherFuc, { initialData: props, revalidateOnMount: true })
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -20,7 +20,7 @@ export default function Home() {
         <meta property="og:description" content={data.data.card.title} />
         <meta property="og:site_name" content="YouTube" />
         <meta property="og:url" content="https://www.youtube.com/watch?v=ih2xubMaZWI" />
-        <meta property="og:title" content="OMFG - Hello" />
+        <meta property="og:title" content="Astra Greeting Card" />
         <meta property="og:image" content={data.data.card.thumbnails} />
         <meta property="og:type" content="video.other" />
         <meta property="og:video:url" content="https://www.youtube.com/embed/ih2xubMaZWI" />
@@ -36,8 +36,8 @@ export default function Home() {
 
         <meta name="twitter:card" content="player" />
         <meta name="twitter:site" content="@youtube" />
-        <meta name="twitter:title" content="OMFG - Hello" />
-        <meta name="twitter:description" content="Selamat Idul Fitri 1442H" />
+        <meta name="twitter:title" content="Astra Greeting Card" />
+        <meta name="twitter:description" content={data.data.card.title} />
         <meta name="twitter:image" content={data.data.card.thumbnails} />
         <meta name="twitter:player" content="https://www.youtube.com/embed/qvK1DCJvuek" />
         <meta name="twitter:player:width" content="1280" />
@@ -101,4 +101,15 @@ export default function Home() {
       </footer>
     </div>
   )
+}
+
+export async function getStaticProps(contect){
+  const res = await fetch('http://52.237.73.240:9090/api/greeting/greeting-card/608fc6acf5daf21edf82715e')
+  const { data } = await res.json()
+
+  return {
+    props: {
+      data
+    }
+  }
 }
