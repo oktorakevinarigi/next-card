@@ -24,28 +24,28 @@ export default function Home({data}) {
         <title>Astra Greeting Card</title>
         
         <meta property="og:description" content={data.card.title} />
-        <meta property="og:site_name" content="YouTube" />
-        <meta property="og:url" content="https://www.youtube.com/watch?v=ih2xubMaZWI" />
+        <meta property="og:site_name" content="card" />
+        <meta property="og:url" content={data.card.videoURL} />
         <meta property="og:title" content="Astra Greeting Card" />
         <meta property="og:image" content={data.card.thumbnails} />
         <meta property="og:type" content="video.other" />
-        <meta property="og:video:url" content="https://www.youtube.com/embed/ih2xubMaZWI" />
-        <meta property="og:video:secure_url" content="https://www.youtube.com/embed/ih2xubMaZWI" />
+        <meta property="og:video:url" content={data.card.videoURL} />
+        <meta property="og:video:secure_url" content={data.card.videoURL} />
         <meta property="og:video:type" content="text/html" />
         <meta property="og:video:width" content="1280" />
         <meta property="og:video:height" content="720" />
-        <meta property="og:video:url" content="http://www.youtube.com/v/ih2xubMaZWI?version=3&amp;autohide=1" />
-        <meta property="og:video:secure_url" content="https://www.youtube.com/v/ih2xubMaZWI?version=3&amp;autohide=1" />
+        <meta property="og:video:url" content={data.card.videoURL} />
+        <meta property="og:video:secure_url" content={data.card.videoURL} />
         <meta property="og:video:type" content="application/x-shockwave-flash" />
         <meta property="og:video:width" content="1280" />
         <meta property="og:video:height" content="720" />
 
         <meta name="twitter:card" content="player" />
-        <meta name="twitter:site" content="@youtube" />
+        <meta name="twitter:site" content="@card" />
         <meta name="twitter:title" content="Astra Greeting Card" />
         <meta name="twitter:description" content={data.card.title} />
         <meta name="twitter:image" content={data.card.thumbnails} />
-        <meta name="twitter:player" content="https://www.youtube.com/embed/qvK1DCJvuek" />
+        <meta name="twitter:player" content={data.card.videoURL} />
         <meta name="twitter:player:width" content="1280" />
         <meta name="twitter:player:height" content="720" />
         
