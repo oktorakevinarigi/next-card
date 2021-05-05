@@ -77,7 +77,7 @@ export default function Home({data}) {
 							/>
 						</div>
             <div className={styles.cardMessage}>
-              <div  className={styles.textDear}>Dear {data.recipient.name}</div>
+              <div  className={styles.textDear}>Kepada {data.recipient.name}</div>
               <div className={styles.cardMessageContainer}>
                 <div
                   dangerouslySetInnerHTML={{
@@ -85,7 +85,7 @@ export default function Home({data}) {
                   }}
                 />
               </div>
-              <div className={styles.textRegards}>Regards, <br /> {data.senderName}</div>
+              <div className={styles.textRegards}>Salam, <br /> {data.senderName}</div>
             </div>
 
 					</div>
