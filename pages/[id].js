@@ -24,7 +24,7 @@ export default function Home({data}) {
         <title>Astra Greeting Card</title>
         
         <meta property="og:description" content={data.card.title} />
-        <meta property="og:site_name" content="card" />
+        <meta property="og:site_name" content="youtube" />
         <meta property="og:url" content={data.card.videoURL} />
         <meta property="og:title" content="Astra Greeting Card" />
         <meta property="og:image" content={data.card.thumbnails} />
@@ -41,7 +41,7 @@ export default function Home({data}) {
         <meta property="og:video:height" content="720" />
 
         <meta name="twitter:card" content="player" />
-        <meta name="twitter:site" content="@card" />
+        <meta name="twitter:site" content="@youtube" />
         <meta name="twitter:title" content="Astra Greeting Card" />
         <meta name="twitter:description" content={data.card.title} />
         <meta name="twitter:image" content={data.card.thumbnails} />
