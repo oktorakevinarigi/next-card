@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css'
 
 export const getServerSideProps = async (context) => {
   const id = context.query.id
-  const res = await fetch(`http://52.237.73.240:9090/api/greeting/greeting-card/${id}`)
+  const res = await fetch(`https://apigreetingcards.astra.co.id/api/greeting/greeting-card/${id}`)
   const { data } = await res.json()
   
   return {
