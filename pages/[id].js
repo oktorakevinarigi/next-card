@@ -27,7 +27,7 @@ export default function Home({data}) {
         <meta property="og:site_name" content="youtube" />
         <meta property="og:url" content={data.card.videoURL} />
         <meta property="og:title" content="Astra Greeting Card" />
-        <meta property="og:image" content="https://i.ytimg.com/vi/ih2xubMaZWI/maxresdefault.jpg" />
+        <meta property="og:image" content={data.card.thumbnails} />
         <meta property="og:type" content="video.other" />
         <meta property="og:video:url" content={data.card.videoURL} />
         <meta property="og:video:secure_url" content={data.card.videoURL} />
@@ -44,7 +44,7 @@ export default function Home({data}) {
         <meta name="twitter:site" content="@youtube" />
         <meta name="twitter:title" content="Astra Greeting Card" />
         <meta name="twitter:description" content={data.card.title} />
-        <meta name="twitter:image" content="https://i.ytimg.com/vi/ih2xubMaZWI/maxresdefault.jpg" />
+        <meta name="twitter:image" content={data.card.thumbnails} />
         <meta name="twitter:player" content={data.card.videoURL} />
         <meta name="twitter:player:width" content="1280" />
         <meta name="twitter:player:height" content="720" />
